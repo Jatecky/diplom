@@ -1,0 +1,52 @@
+{% load static %}
+{% load embed_video_tags %}
+{% load tag_f %}
+
+{% for el in films %}
+<a href="#window_{{ el.id }}" class="window-link">
+    <div class="film">
+        <img src="{{ el.image.url }}" class="film-image">
+        <div class="film-text">
+            <h3 class="film-title">
+                {% carry_str el.title 29 as list_ %}
+                {% for s in list_ %}
+                {{ s }}
+                {% endfor %}
+                <br>
+            </h3>
+            <div class="film-info">
+                <div class="genre">{{ el.genre }}</div>
+                <div class="category">{{ el.date }}</div>
+            </div>
+        </div>
+    </div>
+</a>
+
+<div id="window_{{ el.id }}" class="window">
+    <div class="window-body">
+        <div class="window-content">
+            <a href="#" class="window-close close-window">X</a>
+            <div class="window-trailer">
+                {% video el.video as my_video %}
+                {% video my_video '400x300' %}
+                {% endvideo %}
+                <div class="buttons">
+                    <button id="btn_id_{{ el.id }}" class="window-pay-button button-primary button-s but-post">
+                        <img src="{% static 'img/ticket.svg' %}" width="24px" height="24px" class="button-icon">
+                        <span class="button-text">Оформить место</span>
+                    </button>
+                </div>
+            </div>
+            <div class="window-text">
+                <div class="window-title">{{ el.title }}</div>
+                <div class="window-style">Начало: <span>{{ el.date }}</span></div>
+                <div class="window-style">Жанр: <span>{{ el.genre }}</span></div>
+                <div class="window-style">Цена: <span>{{ el.price }}</span></div>
+                <div class="window-style">Кол-во свободных мест: <span>{{ el.sum_tickets }}</span></div>
+                <div class="window-describe">{{ el.describe }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}

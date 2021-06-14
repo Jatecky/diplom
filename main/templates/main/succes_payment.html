@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+ {% block title %}Оплачено{% endblock %}
+ 
+ {% block content %}
+ <div class="payment">
+  <h1>Оплата прошла успешно!</h1>
+    <div class="payment-menu">
+      <img src="{% static 'img/success-payment.svg' %}" width="90px" height="90px">
+      <p>Поздравляем! Оплата прошла успешно!</p> 
+    </div>
+  </div>
+ {% endblock %}

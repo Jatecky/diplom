@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock  %}</title>
+    <link rel="icon" href="{% static 'img/pick.jpg' %}" type="image/jpg">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="{% static 'img/logo.svg' %}" class="logo">
+            <div class="header-text">
+                <a href={% url 'home' %} class="cursor">Главная</a>
+                <a href={% url 'contacts' %} class="cursor">Контакты</a>
+                <a href={% url 'faq' %} class="cursor">FAQ</a>
+                <a href={% url 'about' %} class="cursor">О нас</a>
+            </div>
+        </header>
+        {% block content %}
+        {% endblock  %}
+        <footer>
+            <div class="footer-main">
+                    <div class="nav-footer">
+                        <div class="section-map">
+                            <div class="section">Разделы</div>
+                                <ul>
+                                    <li><a href={% url 'home' %} class="cursor">Главная</a></li>
+                                    <li><a href={% url 'contacts' %} class="cursor">Контакты</a></li>
+                                    <li><a href={% url 'faq' %} class="cursor">FAQ</a></li>
+                                    <li><a href={% url 'about' %} class="cursor">О нас</a></li>
+                                </ul>
+                            </div>
+                        <div class="map">
+                            <iframe id="map_" src="{{ urlMap }}" width="860" height="200" style="border:0;" allowfullscreen loading="lazy"></iframe></iframe>
+                        </div> 
+                    </div>
+                    <div class="two_block">
+                            <div class="contact">Связаться с нами можно:</div>
+                                <ul>
+                                    <li><p class="num"><a href="tel:+78005553535">+7 (800) 555 35-35</a></p></li>
+                                    <li><p class="email"><a href="mailto:novya.po4ta@mail.ru">novya.po4ta@mail.ru</a></p></li>
+                                </ul>
+                            <div class="social">Мы в соц.сетях</div>
+                                <div class="icons">
+                                    <a href="https://www.instagram.com/"><img src="{% static 'img/Instagram.svg' %}" width="50px" height="50px"></a>
+                                    <a href="https://api.whatsapp.com/send?phone=79081795952"><img src="{% static 'img/Whatsapp.svg' %}" width="50px" height="50px"></a>
+                                    <a href="https://vk.com/"><img src="{% static 'img/Vk.svg' %}" width="50px" height="50px"></a>
+                                </div>
+                    </div>        
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright_column">
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vQ3IwpNaLEEIQop-U3xb_JZMHoagM_1ZdzRydzoBrsC7jWCLqOZXixB18VnMK3sL3XGoo5du0DcWRFm/pub" class="privacy">Политика конфиденциальности</a>
+                    <span class="copy">© 2021 Два любовных колеса. Все права защищены.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src="{% static 'js/window.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/phone.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/kino_select.js' %}"></script>
+</body>

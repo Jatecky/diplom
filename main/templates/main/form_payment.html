@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+</head>
+<body>
+    <form id="form_payment" method="POST" action="https://sci.interkassa.com/" accept-charset="UTF-8">
+        <input type="hidden" name="ik_co_id" value="{{ ik_co_id }}"/>
+        <input type="hidden" name="ik_pm_no" value="{{ ik_pm_no }}"/>
+        <input type="hidden" name="ik_am" value="{{ ik_am }}"/>
+        <input type="hidden" name="ik_cur" value="rub"/>
+        <input type="hidden" name="ik_desc" value="{{ ik_desc }}"/>
+    </form>
+    <script>
+        const form = document.getElementById('form_payment');
+        if(form) {
+            form.submit();
+        }
+    </script>
+</body>
+</html>

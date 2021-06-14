@@ -1,0 +1,112 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+ 
+ {% block title %}Главная | Кинотеатр{% endblock %}
+ 
+ {% block content %}
+<section class="promo-container">
+            <h1 class="promo-title">Кинотеатр под открытым небом<br>с удобным расположением</h1>
+           <span class="promo-text">Под открытым небом, словно, вы - Дэрри и Триш.<br>
+                    Ощутить себя словно в начале 30-х, где вы вдвоем<br>
+                    сидите под старый романтический джаз.<br>
+                    И это не мечта, это наше автомобильное кино - "Два любовных колеса".<br></span>
+</section>
+<section class="poster">
+
+    <div class="section-heading">
+        <h2 id="#afisha" class="section-title">Афиша</h2>
+        <div class="form-group">
+            <div class="select-wrapper">
+                {% if not select_kino %}
+                <select name="select-category" class="select" disabled>
+                    <option value="">Кинотеатры отсутствуют</option>
+                </select>
+                {% else %}
+                <select id="select_kino_" name="select-category" class="select" >
+                    {% for s in select_kino %}
+                    {% if s.id == cur_kino_id %}
+                    <option value="{{ s.id }}" selected>{{ s.title }}</option>
+                    {% else %}
+                    <option value="{{ s.id }}">{{ s.title }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div id="films_select" class="films">
+        {{ films }}
+    </div>
+
+    <div class="window window-ended-tickets">
+        <div class="window-body">
+            <div class="window-content tick_end">
+                <a href="#" class="window-close close-window">X</a>
+                <div class="window-text">
+                    <div class="window-title">К сожалению, на данный фильм билеты раскуплены</div>
+                </div>
+                <button class="button-ended-ok button-s">
+                    <span class="button-text">Понятно</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="window window-pay">
+        <div class="window-body">
+            <div class="window-content">
+                <a href="#" class="window-close close-window">X</a>
+                <form class="block-form" method="POST" action="payment">
+                    {% csrf_token %}
+                    <input id="input_id_film" type="hidden" name="id_film" value="">
+                    <div class="form-field">
+                        <label class="label" for="fid1">
+                            Имя
+                            <sup class="required">*</sup>
+                        </label>
+                        <input name="name" required="required" id="fid1" type="text">
+                    </div>
+
+                    <div class="form-field">
+                        <label class="label" for="fid1">
+                            Телефон
+                            <sup class="required">*</sup>
+                        </label>
+                        <div id="fid2">
+                            <input type="tel" name="phone" required="required" autocomplete="off" class="tel" placeholder="+7 (900) 123-45-67">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="label" for="fid3">
+                            Номер автомобиля формата х000хх00
+                            <sup class="required">*</sup>
+                        </label>
+                        <input name="number_car" required="required" id="fid3" type="text">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="checkbox-list">
+                            <label class="checkbox">
+                                <input type="checkbox" required="required">
+                                Политика конфиденциальности
+                                <sup class="required">*</sup><br>     
+                                Администрация Сайта гарантирует полную конфиденциальность персональных данных<br> 
+                                пользователей, обрабатываемых при предоставлении услуги оплаты места, за<br>
+                                исключением случаев, прямо предусмотренных действующим законодательством РФ.
+                            </label> 
+                        </div>
+                    </div>
+
+                    <button class="button-buy button-s" type="submit">
+                        <span class="button-text">Купить место</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>  
+
+</section>
+{% endblock %}

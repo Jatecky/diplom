@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+ {% block title %}FAQ | Кинотеатр{% endblock %}
+ 
+ {% block content %}
+    <div class="block">
+      <div class="heading"><h6>Часто задаваемые вопросы</h6></div>
+      <div class="block-faq">
+        {% for el in faq %}
+          <div>
+            <strong class="question">{{ el.question }}</strong>
+            <p class="answer">{{ el.answer }}</p>
+          </div>
+        {% endfor %}
+      <div class="foot-faq">
+        <h6>Не нашли ответ на вопрос? Напишите нам на почту: <a href="mailto:novya.po4ta@mail.ru">novya.po4ta@mail.ru</a></h6>
+      </div>
+      </div>
+    </div>
+ {% endblock %}

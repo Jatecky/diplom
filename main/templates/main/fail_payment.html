@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+ {% block title %}Отклонено{% endblock %}
+ 
+ {% block content %}
+ <div class="payment">
+  <h1>Отклонено</h1>
+    <div class="payment-menu">
+      <img src="{% static 'img/cancel.svg' %}" width="90px" height="90px">
+      <p>Произошла ошибка. Повторите действие снова.</p> 
+    </div>
+  </div>
+ {% endblock %}
